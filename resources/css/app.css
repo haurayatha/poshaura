@@ -10,4 +10,34 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+};
+
+/* === Custom Color Palette === */
+:root {
+    --bs-primary: #3B82F6;
+    --bs-primary-rgb: 59, 130, 246;
+    --bs-warning: #F59E0B;
+    --bs-warning-rgb: 245, 158, 11;
+    --bs-danger: #EF4444;
+    --bs-danger-rgb: 239, 68, 68;
+    --bs-success: #10B981;
+    --bs-success-rgb: 16, 185, 129;
+}
+
+body {
+    background-color: #FFFF;
+    color: #070707;
+}
+
+.navbar {
+    background-color: #f3C4C4 !important;
+}
+
+.navbar-brand,
+.navbar .nav-link {
+    color: #00060C !important;
+}
+
+.navbar .nav-link:hover {
+    color: #EF4444 !important;
 }

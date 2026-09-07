@@ -47,9 +47,18 @@
             ||
             <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="d-inline">
                 @csrf
+            {{-- Tombol Create --}}
+             <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Create</a>
+
+            {{-- Tombol Detail/Edit (di dalam loop @foreach) --}} 
+             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning">Edit</a>
+
+            {{-- Form Hapus --}}
+             <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline-block">
+                @csrf
                 @method('DELETE')
-                <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus user ini?')">Hapus</button>
-            </form>
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus user ini?')">Hapus</button>
+             </form>
         </td>
     </tr>
     @endforeach
