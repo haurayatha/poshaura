@@ -28,11 +28,10 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
    
-    public function create ()
+    public function create()
     {
         $roles = Role::all();
-    
-        return view('users.create', compact('roles'));
+        return view("users.create", compact("roles"));
     }
 
     public function store(Request $request)

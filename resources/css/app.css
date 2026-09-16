@@ -12,20 +12,8 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 };
 
-/* === Custom Color Palette === */
-:root {
-    --bs-primary: #3B82F6;
-    --bs-primary-rgb: 59, 130, 246;
-    --bs-warning: #F59E0B;
-    --bs-warning-rgb: 245, 158, 11;
-    --bs-danger: #EF4444;
-    --bs-danger-rgb: 239, 68, 68;
-    --bs-success: #10B981;
-    --bs-success-rgb: 16, 185, 129;
-}
-
 body {
-    background-color: #FFFF;
+    background-color: #216d3b;
     color: #070707;
 }
 
@@ -35,9 +23,20 @@ body {
 
 .navbar-brand,
 .navbar .nav-link {
-    color: #00060C !important;
+    color: #000000 !important;
 }
 
 .navbar .nav-link:hover {
     color: #EF4444 !important;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    background-color: #f3C4C4;
+    color: #000;
 }

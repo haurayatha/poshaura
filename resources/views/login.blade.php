@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="card text-center position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
-    <h5 class="card-header">Login POS</h5>
+    <h5 class="card-header">Login HAFZA PARFUM</h5>
 
     <div class="card-body">
         <form action="{{ route('auth') }}" method="POST">
