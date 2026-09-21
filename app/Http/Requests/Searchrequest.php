@@ -24,6 +24,9 @@ class SearchRequest extends FormRequest
     {
         return [
             'search' => 'nullable|string|max:100',
+            'tanggal' => 'nullable|date',
+            'metode_pembayaran' => 'nullable|in:CASH,QRIS',
+            'status' => 'nullable|in:OPEN,COMPLETED',
         ];
     }
 }

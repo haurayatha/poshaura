@@ -34,6 +34,7 @@
       <th scope="col">User</th>
       <th scope="col">Foto</th>
       <th scope="col">Nama</th>
+      <th scope="col">Jenis</th>
       <th scope="col">Harga Beli</th>
       <th scope="col">Harga Jual</th>
       <th scope="col">Stok</th>
@@ -51,6 +52,11 @@
                 class="img-thumbnail">
       </td>
       <td>{{ $product->nama }}</td>
+      <td>
+        <span class="badge bg-secondary">
+            {{ str($product->jenis)->replace('_', ' ')->title() }}
+        </span>
+      </td>
       <td>{{ $product->harga_beli }}</td>
       <td>{{ $product->harga_jual }}</td>
       <td>{{ $product->stok }}</td>

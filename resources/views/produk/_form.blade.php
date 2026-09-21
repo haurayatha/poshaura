@@ -55,6 +55,26 @@
 </div>
 
 <div>
+    <label>Jenis Produk</label><br>
+
+    <select name="jenis"
+            class="form-select @error('jenis') is-invalid @enderror">
+        <option value="">-- Pilih Jenis --</option>
+        @foreach (['PRIA' => 'Parfum Pria', 'WANITA' => 'Parfum Wanita', 'UNISEX' => 'Unisex', 'BODY_MIST' => 'Body Mist'] as $value => $label)
+            <option value="{{ $value }}" {{ old('jenis', $produk->jenis ?? '') === $value ? 'selected' : '' }}>
+                {{ $label }}
+            </option>
+        @endforeach
+    </select>
+
+    @error('jenis')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+
+<div>
     <label>Harga Beli</label><br>
 
     <input type="number"

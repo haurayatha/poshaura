@@ -60,6 +60,7 @@ class ProdukController extends Controller
 
         $data['user_id'] = Auth::id();
         $data['nama'] = $dataReq['name'];
+        $data['jenis'] = $dataReq['jenis'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
         $data['stok'] = $dataReq['stock'] ?? true;
@@ -101,6 +102,7 @@ class ProdukController extends Controller
         $data = [
         'user_id'   => Auth::id(),
         'nama'      => $dataReq['name'],
+        'jenis'     => $dataReq['jenis'],
         'harga_beli'=> $dataReq['purchase_price'],
         'harga_jual'=> $dataReq['selling_price'],
         'stok'      => $dataReq['stock'],

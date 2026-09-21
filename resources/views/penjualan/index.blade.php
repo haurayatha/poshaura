@@ -1,3 +1,7 @@
+</tbody>
+</table>
+{{$sales->links()}}
+
 @extends('layouts.app')
 
 @section('title', 'Penjualan')
@@ -16,17 +20,47 @@
 
 <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
 
-<form action="{{ route('penjualan.index')}}" method="GET" class="mb-3">
-    <div class="input-group">
+<form action="{{ route('penjualan.index')}}" method="GET" class="row g-2 mb-3 align-items-end">
+    <div class="col-md-3">
+        <label class="form-label">Cari Kasir</label>
         <input
              type="text"
              name="search"
              value="{{ request()->search }}"
              class="form-control"
-             placeholder="Search penjualan">
-        <button class="btn btn-outline-secondary" type="submit">
-            Search
-        </button>
+             placeholder="Nama kasir">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Tanggal Transaksi</label>
+        <input
+            type="date"
+            name="tanggal"
+            value="{{ request()->tanggal }}"
+            class="form-control">
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Jenis Pembayaran</label>
+        <select name="metode_pembayaran" class="form-select">
+            <option value="">Semua</option>
+            <option value="CASH" @selected(request()->metode_pembayaran === 'CASH')>Cash</option>
+            <option value="QRIS" @selected(request()->metode_pembayaran === 'QRIS')>QRIS</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Status</label>
+        <select name="status" class="form-select">
+            <option value="">Semua</option>
+            <option value="OPEN" @selected(request()->status === 'OPEN')>Open</option>
+            <option value="COMPLETED" @selected(request()->status === 'COMPLETED')>Completed</option>
+        </select>
+    </div>
+
+    <div class="col-md-2 d-flex gap-1">
+        <button class="btn btn-outline-secondary" type="submit">Filter</button>
+        <a href="{{ route('penjualan.index') }}" class="btn btn-outline-danger">Reset</a>
     </div>
 </form>
 
@@ -53,7 +87,7 @@
       <td>{{$sale->metode_pembayaran}}</td>
       <td>{{$sale->status}}</td>
       <td class="d-flex gap-1">
-        <a href="" class="btn btn-primary">Detail</a>
+        <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-primary">Detail</a>
         @can('view', $sale)
         ||
         <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>

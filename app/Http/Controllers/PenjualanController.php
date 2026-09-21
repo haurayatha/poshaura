@@ -18,6 +18,9 @@ class PenjualanController extends Controller
     {
         $user = Auth::user();
         $keyword = $request->input('search');
+        $tanggal = $request->input('tanggal');
+        $metode = $request->input('metode_pembayaran');
+        $status = $request->input('status');
 
         $sales = Penjualan::query()
 
@@ -31,11 +34,23 @@ class PenjualanController extends Controller
                 });
             })
 
+            ->when($tanggal, function ($query) use ($tanggal) {
+                $query->whereDate('created_at', $tanggal);
+            })
+
+            ->when($metode, function ($query) use ($metode) {
+                $query->where('metode_pembayaran', $metode);
+            })
+
+            ->when($status, function ($query) use ($status) {
+                $query->where('status', $status);
+            })
+
             ->latest()
             ->paginate(10)
             ->withQueryString();
 
-        return view('penjualan.index', compact('sales'));
+        return view('penjualan.index', compact('sales', 'tanggal', 'metode', 'status'));
     }
 
     /**
@@ -82,9 +97,17 @@ class PenjualanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Penjualan $penjualan)
     {
-        //
+        $user = Auth::user();
+
+        if ($user->role->name === 'kasir' && $penjualan->user_id !== $user->id) {
+            abort(403);
+        }
+
+        $penjualan->load('itemPenjualan.produk', 'user');
+
+        return view('penjualan.show', compact('penjualan'));
     }
 
     /**
@@ -122,7 +145,7 @@ class PenjualanController extends Controller
 
         DB::transaction(function () use ($penjualan, $request) {
 
-            // 🔄 Hitung ulang total (anti manipulasi)
+            // 🔄 Hitung ulang total
             $total = $penjualan->itemPenjualan()->sum('subtotal');
 
             $penjualan->update([
